@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">iNearBy</string>
+    <string name="app_name">iNear</string>
 
     <string name="action_add_contact">Add Contact</string>
     <string name="action_settings">My Profile</string>
@@ -8,4 +8,6 @@
     <string name="action_picture">Choose Existing</string>
     <string name="title_activity_profile">My Profile</string>
     <string name="title_activity_add_contact">Add Contact</string>
+    <string name="title_activity_sign_up">SignUp</string>
+
 </resources>
