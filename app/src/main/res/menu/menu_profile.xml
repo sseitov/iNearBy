@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.vchannel.iNearby.ProfileActivity">
+    <item android:id="@+id/action_profile" android:title="@string/action_profile"
+        android:orderInCategory="100" android:showAsAction="always">
+        <menu>
+            <item android:id="@+id/photo" android:title="@string/action_photo"></item>
+            <item android:id="@+id/picture" android:title="@string/action_picture"></item>
+        </menu>
+    </item>
+</menu>
