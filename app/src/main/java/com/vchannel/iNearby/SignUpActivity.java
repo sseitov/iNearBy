@@ -67,10 +67,6 @@ public class SignUpActivity extends Activity {
                     public void done(ParseUser parseUser, ParseException e) {
                         if (parseUser != null) {
                             progress.dismiss();
-                            ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-                            String jabber = (String)parseUser.get("jabber");
-                            installation.put("jabber", jabber);
-                            installation.saveInBackground();
                             finish();
                         } else {
                             parseUser = new ParseUser();

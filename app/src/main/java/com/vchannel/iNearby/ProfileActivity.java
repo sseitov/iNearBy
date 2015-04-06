@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 
 import org.jivesoftware.smack.Roster;
@@ -237,6 +238,9 @@ public class ProfileActivity extends Activity {
         protected void onPostExecute(Void result) {
             progress.dismiss();
             if (MainActivity.connection != null) {
+                ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+                installation.put("jabber", jid[0]+"@"+jid[1]);
+                installation.saveInBackground();
                 finish();
             } else {
                 errorLogin();

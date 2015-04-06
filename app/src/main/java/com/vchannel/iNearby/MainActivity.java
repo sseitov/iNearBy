@@ -84,10 +84,10 @@ public class MainActivity extends Activity {
         rosterAdapter = new RosterAdapter((Context)this);
         contactListView.setAdapter(rosterAdapter);
 
+        Parse.initialize(this, "Azz7OQsCDOQNp1Fjw7JbzXRxg1qhOcnWgFxUzYty", "utsSMDqCgOy8IPgTIaL0OefzBtrz8ajMNRPtlSHL");
+
         SmackAndroid.init(this);
         ProviderManager.addIQProvider("vCard", "vcard-temp", new VCardProvider());
-
-        Parse.initialize(this, "Azz7OQsCDOQNp1Fjw7JbzXRxg1qhOcnWgFxUzYty", "utsSMDqCgOy8IPgTIaL0OefzBtrz8ajMNRPtlSHL");
 
         ParseUser currentUser = ParseUser.getCurrentUser();
 
