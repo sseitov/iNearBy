@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginLeft ="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:inputType="textEmailAddress"
             android:hint="Jabber Login"
             android:ems="10"
@@ -49,13 +50,27 @@
             android:gravity="center_horizontal" />
 
         <Button
-            android:layout_width="400px"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginLeft ="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_gravity="center"
             android:text="Connect"
             android:textColor="@android:color/white"
             android:id="@+id/loginButton"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginLeft ="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center"
+            android:text="Disconnect"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_red_dark"
+            android:id="@+id/disconnectButton" />
 
     </LinearLayout>
 </RelativeLayout>

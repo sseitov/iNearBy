@@ -36,7 +36,8 @@ public class SignUpActivity extends Activity {
     private void successSignUp()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("SignUp success! Check your mail and confirm registration. After confirmation you can connect to Jabber.");
+        builder.setTitle("SignUp success!");
+        builder.setMessage("Check your mail and confirm registration. After confirmation you can connect to Jabber.");
         builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
