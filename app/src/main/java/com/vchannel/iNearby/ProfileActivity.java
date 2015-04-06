@@ -29,6 +29,7 @@ import com.parse.ParseUser;
 
 import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
+import org.jivesoftware.smackx.vcardtemp.packet.VCard;
 
 import java.io.ByteArrayOutputStream;
 
@@ -74,8 +75,7 @@ public class ProfileActivity extends Activity {
             connectButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    printMessage("Update vCard");
+                    uploadVCard();
                 }
             });
             disconnectButton.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +164,12 @@ public class ProfileActivity extends Activity {
         alert.show();
     }
 
+    private void uploadVCard()
+    {
+        progress = ProgressDialog.show(this, "Upload vCard", "Please wait...", true, false);
+        new UploadCard().execute();
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
@@ -189,6 +195,36 @@ public class ProfileActivity extends Activity {
                 parseUser.saveInBackground();
             }
         }
+    }
+
+    private class UploadCard  extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            VCard myCard = new VCard();
+            try {
+                myCard.load(MainActivity.connection);
+                String nickName = jabberLogin.getText().toString();
+                if (nickName != null) {
+                    myCard.setNickName(nickName);
+                    parseUser.put("displayName", nickName);
+                }
+                byte[] imageBytes = (byte[])parseUser.get("photo");
+                if (imageBytes != null) {
+                    myCard.setAvatar(imageBytes);
+                }
+                myCard.save(MainActivity.connection);
+            } catch (Exception e) {
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            parseUser.saveInBackground();
+            progress.dismiss();
+        }
+
     }
 
     private class DisconnectFromXmpp extends AsyncTask<Void, Void, Void> {

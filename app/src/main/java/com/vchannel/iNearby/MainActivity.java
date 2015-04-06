@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,15 +35,16 @@ public class MainActivity extends Activity {
 
     public static final String TAG = "iNear";
 
-    private static final int REQUEST_SIGNUP    = 0;
-    private static final int REQUEST_PROFILE   = 1;
-    private static final int REQUEST_ADD_CONTACT   = 2;
+    private static final int REQUEST_SIGNUP         = 0;
+    private static final int REQUEST_PROFILE        = 1;
+    private static final int REQUEST_ADD_CONTACT    = 2;
+    private static final int REQUEST_CHAT           = 2;
 
     public static XMPPConnection connection;
     public static Roster roster;
+    private static RosterAdapter rosterAdapter;
 
     ListView contactListView;
-    RosterAdapter rosterAdapter;
 
     public class RosterAdapter extends ArrayAdapter<VCard> {
         private final Context context;
@@ -80,16 +82,25 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        contactListView = (ListView)findViewById(R.id.contactList);
-        rosterAdapter = new RosterAdapter((Context)this);
-        contactListView.setAdapter(rosterAdapter);
-
         Parse.initialize(this, "Azz7OQsCDOQNp1Fjw7JbzXRxg1qhOcnWgFxUzYty", "utsSMDqCgOy8IPgTIaL0OefzBtrz8ajMNRPtlSHL");
 
         SmackAndroid.init(this);
-        ProviderManager.addIQProvider("vCard", "vcard-temp", new VCardProvider());
 
         ParseUser currentUser = ParseUser.getCurrentUser();
+
+        contactListView = (ListView)findViewById(R.id.contactList);
+        if (rosterAdapter == null) {
+            rosterAdapter = new RosterAdapter((Context)this);
+        }
+        contactListView.setAdapter(rosterAdapter);
+
+        contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                VCard item = (VCard)parent.getItemAtPosition(position);
+                openChat(item);
+            }
+        });
 
         if (currentUser == null) {
             Intent intent = new Intent(this, SignUpActivity.class);
@@ -100,6 +111,12 @@ public class MainActivity extends Activity {
         }
     }
 
+    void openChat(VCard item) {
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra("name", item.getNickName());
+        intent.putExtra("address", item.getJabberId());
+        startActivityForResult(intent, REQUEST_CHAT);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,6 +149,8 @@ public class MainActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_PROFILE) {
             if (connection != null) {
+                ProviderManager.addIQProvider("vCard", "vcard-temp", new VCardProvider());
+
                 roster = connection.getRoster();
                 rosterAdapter.clear();
                 for (Iterator iterator = roster.getEntries().iterator(); iterator.hasNext();) {

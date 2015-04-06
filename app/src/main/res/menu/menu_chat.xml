@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.vchannel.iNearby.ChatActivity">
+
+    <item android:id="@+id/action_send_photo" android:title="@string/action_send_photo"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/action_send_picture" android:title="@string/action_send_picture"
+        android:orderInCategory="100" android:showAsAction="never" />
+</menu>

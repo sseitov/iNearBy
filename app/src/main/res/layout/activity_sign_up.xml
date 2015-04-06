@@ -43,7 +43,7 @@
             android:gravity="center_horizontal" />
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="600px"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginLeft ="@dimen/activity_horizontal_margin"
@@ -51,15 +51,17 @@
             android:layout_gravity="center"
             android:text="SignUp"
             android:textColor="@android:color/white"
+            android:background="@drawable/custom_button"
             android:id="@+id/signUpButton"/>
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="600px"
             android:layout_height="wrap_content"
             android:layout_marginLeft ="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_gravity="center"
             android:text="Reset Password"
             android:textColor="@android:color/white"
+            android:background="@drawable/custom_button"
             android:id="@+id/resetPasswordButton"/>
 
     </LinearLayout>

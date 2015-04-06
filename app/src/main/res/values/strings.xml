@@ -6,8 +6,11 @@
     <string name="action_profile">My Photo</string>
     <string name="action_photo">Take Photo</string>
     <string name="action_picture">Choose Existing</string>
+    <string name="action_send_photo">Send Photo</string>
+    <string name="action_send_picture">Send Picture</string>
     <string name="title_activity_profile">My Profile</string>
     <string name="title_activity_add_contact">Add Contact</string>
     <string name="title_activity_sign_up">SignUp</string>
+    <string name="title_activity_chat">Chat</string>
 
 </resources>
