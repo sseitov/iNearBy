@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.parse.Parse;
 import com.parse.ParseUser;
 
@@ -59,4 +60,17 @@ public class MainActivity extends Activity {
                 return super.onOptionsItemSelected(item);
         }
     }
+/*
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_PROFILE) {
+            if (connection.isConnected()) {
+                Toast.makeText(this, "Jabber Connected", Toast.LENGTH_LONG).show();
+            } else {
+                connection = null;
+            }
+        }
+    }
+*/
+
 }

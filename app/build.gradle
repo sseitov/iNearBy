@@ -22,5 +22,5 @@ android {
 dependencies {
     compile 'de.hdodenhof:circleimageview:1.2.2'
     compile 'com.parse.bolts:bolts-android:1.+'
-    compile fileTree(dir: 'libs', include: 'Parse-*.jar')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 }

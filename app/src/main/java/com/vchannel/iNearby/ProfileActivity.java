@@ -6,10 +6,13 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -62,6 +65,13 @@ public class ProfileActivity extends Activity {
             Bitmap bMap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
             photoView.setImageBitmap(bMap);
         }
+
+        Button button = (Button)findViewById(R.id.loginButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     }
 
 
@@ -114,4 +124,5 @@ public class ProfileActivity extends Activity {
             }
         }
     }
+
 }
