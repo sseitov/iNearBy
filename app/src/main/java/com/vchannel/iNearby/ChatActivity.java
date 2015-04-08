@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
@@ -26,6 +27,8 @@ public class ChatActivity extends Activity {
 
     private String peer;
     private EditText messageView;
+    private ListView chatView;
+    private ChatAdapter chatAdapter;
 
     private ParseUser parseUser = ParseUser.getCurrentUser();
 
@@ -62,6 +65,10 @@ public class ChatActivity extends Activity {
         setTitle(intent.getStringExtra("name"));
         peer = intent.getStringExtra("address");
 
+        chatView = (ListView)findViewById(R.id.chatView);
+        chatAdapter = new ChatAdapter(getApplicationContext(), R.layout.message_layout_right);
+        chatView.setAdapter(chatAdapter);
+
         ChatManager chatManager = ChatManager.getInstanceFor(MainActivity.connection);
         chatManager.createChat(peer, new MessageListener() {
             @Override
@@ -75,10 +82,10 @@ public class ChatActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-
                     DateMessage message = new DateMessage();
                     message.setBody(messageView.getText().toString());
-                    MainActivity.connection.sendPacket(message);
+ //                   MainActivity.connection.sendPacket(message);
+                    chatAdapter.add(new ChatMessage(true, message.getBody()));
                 } catch (Exception e) {
 
                 } finally {
